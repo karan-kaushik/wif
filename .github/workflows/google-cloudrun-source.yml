@@ -88,6 +88,7 @@ jobs:
           service: 'wif-service'
           region: 'us-central1'
           image: 'us-docker.pkg.dev/cloudrun/container/hello'
+          skip_default_labels: true
           # NOTE: If required, update to the appropriate source folder
           # source: ./
 
