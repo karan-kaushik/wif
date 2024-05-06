@@ -58,9 +58,9 @@ env:
 jobs:
   deploy:
     # Add 'id-token' with the intended permissions for workload identity federation
-    permissions: write-all
-      # contents: 'read'
-      # id-token: 'write'
+    permissions: 
+      contents: 'read'
+      id-token: 'write'
 
     runs-on: ubuntu-latest
     steps:
@@ -84,12 +84,13 @@ jobs:
 
       - name: Deploy to Cloud Run
         id: deploy
-        uses: google-github-actions/deploy-cloudrun@v2.4.1
+        uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           # NOTE: If required, update to the appropriate source folder
-          source: ./
+          # source: ./
+          image: 'us-docker.pkg.dev/cloudrun/container/hello'
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
